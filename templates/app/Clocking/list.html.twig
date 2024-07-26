@@ -2,14 +2,15 @@
 
 {% block body %}
     <div>
-        <a href="{{ path('app_Clocking_create') }}">Créer</a>
+        <a href="{{ path('app_Clocking_create_collaborator') }}">Créer en tant que collaborateur</a>
+        <a href="{{ path('app_Clocking_create_manager') }}">Créer en tant que chef de projet</a>
     </div>
     <table>
         <thead>
             <tr>
                 <td>{{ 'entity.Clocking.date'|trans }}</td>
                 <td>{{ 'entity.Clocking.clockingUser'|trans }}</td>
-                <td>{{ 'entity.Clocking.clockingDeatils'|trans }}</td>
+                <td>{{ 'entity.Clocking.clockingDetails'|trans }}</td>
                 <td>Actions</td>
             </tr>
         </thead>

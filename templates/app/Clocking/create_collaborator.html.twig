@@ -1,0 +1,48 @@
+{# templates/app/Clocking/create_collaborator.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Créer un nouveau pointage</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.clockingUser) }}
+    {{ form_row(form.date) }}
+
+    <ul class="clockings" data-prototype="{{ form_widget(form.clockingDetails.vars.prototype)|e('html_attr') }}">
+        {% for clockingDetail in form.clockingDetails %}
+            <li>{{ form_row(clockingDetail.project) }} {{ form_row(clockingDetail.duration) }}</li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="add_clocking_link">Ajouter un chantier</button>
+
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var $collectionHolder = document.querySelector('ul.clockings');
+            var $addClockingButton = document.querySelector('.add_clocking_link');
+
+            if ($collectionHolder && $addClockingButton) {
+                var index = $collectionHolder.getElementsByTagName('li').length;
+
+                $addClockingButton.addEventListener('click', function (e) {
+                    addClockingForm($collectionHolder, index);
+                    index++;
+                });
+            }
+
+            function addClockingForm($collectionHolder, index) {
+                var prototype = $collectionHolder.dataset.prototype;
+                var newForm = prototype.replace(/__name__/g, index);
+                var $newFormLi = document.createElement('li');
+                $newFormLi.innerHTML = newForm;
+                $collectionHolder.appendChild($newFormLi);
+            }
+        });
+    </script>
+{% endblock %}

@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CreateClockingType extends AbstractType
+class CollaboratorClockingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -32,6 +32,7 @@ class CreateClockingType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+                'label'=> 'entity.Clocking.clockingDetails',
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Créer',

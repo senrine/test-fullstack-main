@@ -1,8 +1,11 @@
 entity:
   Clocking:
-    clockingProject: "Chantier"
     clockingUser: "Collaborateur"
+    clockingUsers: "Collaborateurs"
     date: "Date de fin"
+    clockingDetails: "Détails du pointage"
+  ClockingDetails:
+    project: "Projet"
     duration: "Durée"
   Project:
     address: "Adresse"

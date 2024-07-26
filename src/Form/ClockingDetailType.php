@@ -22,7 +22,7 @@ class ClockingDetailType extends AbstractType
             ->add('duration', IntegerType::class);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver):  void
     {
         $resolver->setDefaults([
             'data_class' => ClockingDetail::class,
