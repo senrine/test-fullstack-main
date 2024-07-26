@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
-        <a href="{{ path('app_Clocking_create_collaborator') }}">Créer en tant que collaborateur</a>
-        <a href="{{ path('app_Clocking_create_manager') }}">Créer en tant que chef de projet</a>
+    <div class="flex justify-end">
+        <a class="create-link mr-4" href="{{ path('app_Clocking_create_collaborator') }}">Je suis collaborateur</a>
+        <a class="create-link" href="{{ path('app_Clocking_create_manager') }}">Je suis chef de projet</a>
     </div>
     <table>
         <thead>

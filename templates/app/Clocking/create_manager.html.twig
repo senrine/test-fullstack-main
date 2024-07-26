@@ -1,35 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Créer un nouveau pointage (Chef de projet)</h1>
+    <div class="flex flex-col w-full">
 
-    {{ form_start(form) }}
-    {{ form_row(form.date) }}
+        <h1 class="text-2xl font-bold text-center mb-10">Créer un nouveau pointage (Chef de projet)</h1>
+        <div class="w-[30%] mx-auto">
 
-    <h3>Collaborateurs</h3>
-    <div class="users-container">
-        <ul class="users" data-prototype="{{ form_widget(form.users.vars.prototype)|e('html_attr') }}">
-            {% for userField in form.users %}
-                <li>{{ form_row(userField) }}</li>
-            {% endfor %}
-        </ul>
-        <button type="button" class="add_user_link">Ajouter un collaborateur</button>
+            {{ form_start(form) }}
+            <div class="form-group">
+
+                {{ form_label(form.date, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.date) }}
+            </div>
+            <div class="users-container">
+                <ul class="users text-black"
+                    data-prototype="{{ form_widget(form.users.vars.prototype)|e('html_attr') }}">
+                    {% for userField in form.users %}
+                        <li>
+                            {{ form_label(form.userField) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="add_user_link create-link w-full mb-4">Ajouter un collaborateur</button>
+            </div>
+
+            <div class="clockings-container">
+                <ul class="clockings"
+                    data-prototype="{{ form_row(form.clockingDetails.vars.prototype)|e('html_attr') }}">
+                    {% for clockingDetail in form.clockingDetails %}
+                        <li class="form-group">
+                            {{ form_label(form.clockingDetail, null, {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.clockingDetail, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.clockingDetail) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="add_clocking_link create-link w-full mb-4">Ajouter un chantier</button>
+            </div>
+
+            {{ form_row(form.submit, {'attr': {'class': 'form-submit'}}) }}
+
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+        <a class="back-link" href="{{ path('app_Clocking_list') }}">< Retour à la liste</a>
     </div>
-
-    <h3>Détails du pointage</h3>
-    <div class="clockings-container">
-        <ul class="clockings" data-prototype="{{ form_row(form.clockingDetails.vars.prototype)|e('html_attr') }}">
-            {% for clockingDetail in form.clockingDetails %}
-                <li>
-                    {{ form_row(clockingDetail) }}
-                </li>
-            {% endfor %}
-        </ul>
-        <button type="button" class="add_clocking_link">Ajouter un chantier</button>
-    </div>
-
-    {{ form_row(form.submit) }}
-    {{ form_end(form) }}
 {% endblock %}
 
 {% block javascripts %}

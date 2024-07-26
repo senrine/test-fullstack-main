@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+table a {
+    @apply text-secondary;
+}
+table a:hover {
+    @apply text-red;
+}
+.create-link {
+    @apply px-4 py-2 border bg-white text-black rounded-md;
+}
+.create-link:hover {
+    @apply bg-gray-400 text-white border-gray-600;
+}
+table {
+    @apply table-auto w-full mt-10;
+}
+table tr {
+    @apply border-b border-gray-200;
+}
+table tr:last-child {
+    @apply border-b-0;
+}
+table tr td {
+    @apply p-4;
+}
+table thead {
+    @apply text-gray-300 text-sm font-bold;
+}
+.form-label {
+    @apply block text-sm font-medium text-gray-400 mb-2;
+}
+.form-control {
+    @apply text-black border border-gray-200 rounded-md px-2 py-2 focus:outline-none focus:border-red w-full mb-4;
+}
+.form-submit {
+    @apply px-4 py-2 bg-secondary text-white rounded-md ml-auto block;
+}
+.back-link{
+    @apply text-gray-400 text-sm font-semibold;
+}

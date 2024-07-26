@@ -2,22 +2,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Créer un nouveau pointage</h1>
+    <div class="flex flex-col w-full">
 
-    {{ form_start(form) }}
-    {{ form_row(form.clockingUser) }}
-    {{ form_row(form.date) }}
+        <h1 class="text-2xl font-bold text-center mb-10">Créer un nouveau pointage (Collaborateur)</h1>
+        <div class="w-[30%] mx-auto">
 
-    <ul class="clockings" data-prototype="{{ form_widget(form.clockingDetails.vars.prototype)|e('html_attr') }}">
-        {% for clockingDetail in form.clockingDetails %}
-            <li>{{ form_row(clockingDetail.project) }} {{ form_row(clockingDetail.duration) }}</li>
-        {% endfor %}
-    </ul>
-    <button type="button" class="add_clocking_link">Ajouter un chantier</button>
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.clockingUser, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.clockingUser, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.clockingUser) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.date, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.date) }}
+            </div>
 
-    {{ form_row(form.submit) }}
-    {{ form_end(form) }}
+            <ul class="clockings"
+                data-prototype="{{ form_widget(form.clockingDetails.vars.prototype)|e('html_attr') }}">
+                {% for clockingDetail in form.clockingDetails %}
+                    <li>{{ form_row(clockingDetail.project) }} {{ form_row(clockingDetail.duration) }}</li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="add_clocking_link create-link w-full mb-4">Ajouter un chantier</button>
 
+            {{ form_row(form.submit, {'attr': {'class': 'form-submit'}}) }}
+
+            {{ form_end(form , {'render_rest': false}) }}
+
+        </div>
+        <a class="back-link" href="{{ path('app_Clocking_list') }}">< Retour à la liste</a>
+
+    </div>
 {% endblock %}
 
 {% block javascripts %}

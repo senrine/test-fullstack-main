@@ -3,13 +3,29 @@
 {% block title %}Créer un nouvel utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouvel utilisateur</h1>
+    <div class="flex flex-col w-full">
+        <h1 class="text-2xl font-bold text-center mb-10">Créer un nouvel utilisateur</h1>
+        <div class="w-[30%] mx-auto">
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.firstName, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.firstName) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.lastName, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.lastName) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.matricule, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.matricule, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.matricule) }}
+            </div>
+            {{ form_row(form.submit, {'attr': {'class': 'form-submit'}}) }}
+            {{ form_end(form) }}
+        </div>
 
-    {{ form_start(form) }}
-    {{ form_row(form.firstName) }}
-    {{ form_row(form.lastName) }}
-    {{ form_row(form.matricule) }}
-    {{ form_end(form) }}
-
-    <a href="{{ path('app_User_list') }}">Retour à la liste</a>
+        <a class="back-link" href="{{ path('app_User_list') }}">< Retour à la liste</a>
+    </div>
 {% endblock %}

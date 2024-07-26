@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
+    <div class="text-center">
+        <h1 class="text-4xl font-bold mb-3">Bienvenue!</h1>
+        <p class="text-lg text-gray-500 mb-24">J'ai créé ce site pour vous aider à gérer vos projets de chantier.</p>
+        <div class="py-12 border-2 border-gray-900 rounded-lg text-gray-400">
         {{ readmeContent|markdown_to_html }}
+        </div>
     </div>
 {% endblock %}
