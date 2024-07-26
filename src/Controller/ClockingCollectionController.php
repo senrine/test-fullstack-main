@@ -11,6 +11,7 @@ use App\Form\ManagerClockingType;
 use App\Repository\ClockingRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -87,6 +88,11 @@ class ClockingCollectionController extends
             $entityManager->flush();
 
             return $this->redirectToRoute('app_Clocking_list');
+        }else{
+            $errors = $form->getErrors(true);
+            foreach ($errors as $error) {
+                $form->addError(new FormError($error->getMessage()));
+            }
         }
 
         return $this->render('app/Clocking/create_manager.html.twig', [

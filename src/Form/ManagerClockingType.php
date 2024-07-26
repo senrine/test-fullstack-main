@@ -16,7 +16,7 @@ class ManagerClockingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', DateType::class,[
+            ->add('date', DateType::class, [
                 'label' => 'entity.Clocking.date',
             ])
             ->add('users', CollectionType::class, [
@@ -42,13 +42,15 @@ class ManagerClockingType extends AbstractType
                 'prototype' => true,
                 'label' => 'entity.Clocking.clockingDetails',
             ])
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class, [
+                'label' => 'Créer',
+                'attr' => ['class' => 'form-submit'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Ne pas définir de data_class ici
         ]);
     }
 }

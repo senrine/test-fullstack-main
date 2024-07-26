@@ -27,6 +27,7 @@
             </ul>
             <button type="button" class="add_clocking_link create-link w-full mb-4">Ajouter un chantier</button>
 
+            {{ form_row(form._token) }}
             {{ form_row(form.submit, {'attr': {'class': 'form-submit'}}) }}
 
             {{ form_end(form , {'render_rest': false}) }}

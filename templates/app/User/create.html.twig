@@ -21,6 +21,12 @@
                 {{ form_label(form.matricule, null, {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.matricule, {'attr': {'class': 'form-control'}}) }}
                 {{ form_errors(form.matricule) }}
+                {% if not form.vars.valid %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+
             </div>
             {{ form_row(form.submit, {'attr': {'class': 'form-submit'}}) }}
             {{ form_end(form) }}

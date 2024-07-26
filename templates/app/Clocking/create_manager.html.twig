@@ -16,9 +16,9 @@
             <div class="users-container">
                 <ul class="users text-black"
                     data-prototype="{{ form_widget(form.users.vars.prototype)|e('html_attr') }}">
-                    {% for userField in form.users %}
+                    {% for user in form.users %}
                         <li>
-                            {{ form_label(form.userField) }}
+                            {{ form_row(user) }}
                         </li>
                     {% endfor %}
                 </ul>
@@ -29,17 +29,16 @@
                 <ul class="clockings"
                     data-prototype="{{ form_row(form.clockingDetails.vars.prototype)|e('html_attr') }}">
                     {% for clockingDetail in form.clockingDetails %}
-                        <li class="form-group">
-                            {{ form_label(form.clockingDetail, null, {'label_attr': {'class': 'form-label'}}) }}
-                            {{ form_widget(form.clockingDetail, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(form.clockingDetail) }}
+                        <li>
+                            {{ form_row(clockingDetail) }}
                         </li>
                     {% endfor %}
                 </ul>
                 <button type="button" class="add_clocking_link create-link w-full mb-4">Ajouter un chantier</button>
             </div>
 
-            {{ form_row(form.submit, {'attr': {'class': 'form-submit'}}) }}
+            {{ form_row(form._token) }}
+            {{ form_row(form.submit) }}
 
             {{ form_end(form, {'render_rest': false}) }}
         </div>

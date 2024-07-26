@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -9,6 +9,7 @@ use App\Form\CreateUserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -24,7 +25,7 @@ class UserCollectionController extends
      * @return \Symfony\Component\HttpFoundation\Response
      */
     #[Route('/', name: 'app_User_list', methods: ['GET'])]
-    public function listUsers(UserRepository $userRepository) : Response
+    public function listUsers(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
 
@@ -34,17 +35,21 @@ class UserCollectionController extends
     }
 
     #[Route('/create', name: 'app_User_create', methods: ['POST', 'GET'])]
-    public function createUser(UserRepository $userRepository, Request $request, EntityManagerInterface $entityManager) : Response
+    public function createUser(UserRepository $userRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CreateUserType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            try {
+                $user = $form->getData();
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return $this->redirectToRoute('app_User_list');
+            } catch (\Exception $e) {
+                $form->addError(new FormError('Ce matricule est déjà utilisé. Veuillez en choisir un autre.'));
+            }
 
-            return $this->redirectToRoute('app_User_list');
         }
 
         return $this->render('app/User/create.html.twig', [
