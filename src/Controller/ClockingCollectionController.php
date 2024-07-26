@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Entity\Clocking;
 use App\Form\CreateClockingType;
 use App\Repository\ClockingRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,30 +24,22 @@ class ClockingCollectionController extends
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    #[Route('/create', name: 'app_Clocking_create', methods: [
-        'GET',
-        'POST',
-    ])]
-    public function createClocking(
-        EntityManagerInterface $entityManager,
-        Request                $request,
-    ) : Response {
-        $form = $this->createForm(CreateClockingType::class);
+    #[Route('/create', name: 'app_Clocking_create', methods: ['GET', 'POST'])]
+    public function createClocking(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $clocking = new Clocking();
+        $form = $this->createForm(CreateClockingType::class, $clocking);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $clocking = $form->getData();
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($clocking);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_Clocking_list');
         }
 
-        $formView = $form->createView();
-
         return $this->render('app/Clocking/create.html.twig', [
-            'form' => $formView,
+            'form' => $form->createView(),
         ]);
     }
 

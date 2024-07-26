@@ -1,14 +1,26 @@
+{# templates/app/Clocking/create.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
+    <h1>Créer un nouveau pointage</h1>
 
     {{ form_start(form) }}
-
-    {{ form_row(form.clockingProject) }}
     {{ form_row(form.clockingUser) }}
     {{ form_row(form.date) }}
-    {{ form_row(form.duration) }}
 
+    <h3>Détails du pointage</h3>
+    <ul class="clockings" data-prototype="{{ form_widget(form.clockingDetails.vars.prototype)|e('html_attr') }}">
+        {% for clockingDetail in form.clockingDetails %}
+            <li>{{ form_row(clockingDetail.project) }} {{ form_row(clockingDetail.duration) }}</li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="add_clocking_link">Ajouter un chantier</button>
+
+    {{ form_row(form.submit) }}
     {{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}
