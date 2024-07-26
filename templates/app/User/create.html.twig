@@ -5,7 +5,11 @@
 {% block body %}
     <h1>Créer un nouvel utilisateur</h1>
 
-    {{ form(form) }}
+    {{ form_start(form) }}
+    {{ form_row(form.firstName) }}
+    {{ form_row(form.lastName) }}
+    {{ form_row(form.matricule) }}
+    {{ form_end(form) }}
 
     <a href="{{ path('app_User_list') }}">Retour à la liste</a>
 {% endblock %}

@@ -15,13 +15,13 @@ class CreateUserType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'entity.User.firstName',
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'entity.User.lastName',
             ])
             ->add('matricule', TextType::class, [
-                'label' => 'Matricule',
+                'label' => 'entity.User.matricule',
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Créer',
