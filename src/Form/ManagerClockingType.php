@@ -43,8 +43,7 @@ class ManagerClockingType extends AbstractType
                 'label' => 'entity.Clocking.clockingDetails',
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Créer',
-                'attr' => ['class' => 'form-submit'],
+                'label' => 'Créer'
             ]);
     }
 
