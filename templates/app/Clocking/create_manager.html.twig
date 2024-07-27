@@ -38,7 +38,7 @@
             </div>
 
             {{ form_row(form._token) }}
-            {{ form_row(form.submit) }}
+            {{ form_row(form.submit, {'attr': {'class': 'form-submit'}}) }}
 
             {{ form_end(form, {'render_rest': false}) }}
         </div>
