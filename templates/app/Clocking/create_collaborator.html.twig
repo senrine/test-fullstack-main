@@ -42,24 +42,24 @@
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
-            var $collectionHolder = document.querySelector('ul.clockings');
-            var $addClockingButton = document.querySelector('.add_clocking_link');
+            var collectionHolder = document.querySelector('ul.clockings');
+            var addClockingButton = document.querySelector('.add_clocking_link');
 
-            if ($collectionHolder && $addClockingButton) {
-                var index = $collectionHolder.getElementsByTagName('li').length;
+            if (collectionHolder && addClockingButton) {
+                var index = collectionHolder.getElementsByTagName('li').length;
 
-                $addClockingButton.addEventListener('click', function (e) {
-                    addClockingForm($collectionHolder, index);
+                addClockingButton.addEventListener('click', function (e) {
+                    addClockingForm(collectionHolder, index);
                     index++;
                 });
             }
 
             function addClockingForm($collectionHolder, index) {
-                var prototype = $collectionHolder.dataset.prototype;
+                var prototype = collectionHolder.dataset.prototype;
                 var newForm = prototype.replace(/__name__/g, index);
-                var $newFormLi = document.createElement('li');
-                $newFormLi.innerHTML = newForm;
-                $collectionHolder.appendChild($newFormLi);
+                var newFormLi = document.createElement('li');
+                newFormLi.innerHTML = newForm;
+                collectionHolder.appendChild(newFormLi);
             }
         });
     </script>

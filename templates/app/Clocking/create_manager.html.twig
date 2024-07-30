@@ -49,23 +49,23 @@
 {% block javascripts %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            function addItemToCollection($collectionHolder, $addButton) {
-                var prototype = $collectionHolder.dataset.prototype;
-                var index = $collectionHolder.getElementsByTagName('li').length;
+            function addItemToCollection(collectionHolder, addButton) {
+                var prototype = collectionHolder.dataset.prototype;
+                var index = collectionHolder.getElementsByTagName('li').length;
                 var newForm = prototype.replace(/__name__/g, index);
-                var $newFormLi = document.createElement('li');
-                $newFormLi.innerHTML = newForm;
-                $collectionHolder.appendChild($newFormLi);
+                var newFormLi = document.createElement('li');
+                newFormLi.innerHTML = newForm;
+                collectionHolder.appendChild(newFormLi);
             }
 
             function setupCollection(containerClass, buttonClass) {
-                var $container = document.querySelector(containerClass);
-                var $collectionHolder = $container.querySelector('ul');
-                var $addButton = $container.querySelector(buttonClass);
+                var container = document.querySelector(containerClass);
+                var collectionHolder = container.querySelector('ul');
+                var addButton = container.querySelector(buttonClass);
 
-                if ($collectionHolder && $addButton) {
-                    $addButton.addEventListener('click', function (e) {
-                        addItemToCollection($collectionHolder, $addButton);
+                if (collectionHolder && addButton) {
+                    addButton.addEventListener('click', function (e) {
+                        addItemToCollection(collectionHolder, addButton);
                     });
                 }
             }
